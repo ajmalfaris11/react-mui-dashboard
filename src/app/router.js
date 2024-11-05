@@ -6,6 +6,7 @@ export default function router() { // Capitalize the function name
   return (
     <Routes>
       <Route index element={<DashboardPage />} />
+
     </Routes>
   );
 }
