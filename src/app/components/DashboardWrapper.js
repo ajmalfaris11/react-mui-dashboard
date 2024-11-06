@@ -43,7 +43,7 @@ export default function DashboardWrapper({ title, children }) {
             {title}
           </Typography>
 
-          <Button color="inherit">Logout</Button>
+          <Button sx={{bgcolor:"white", color:"black"}} href="login">Logout</Button>
         </Toolbar>
       </AppBar>
 
