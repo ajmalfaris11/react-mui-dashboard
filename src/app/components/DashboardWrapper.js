@@ -126,6 +126,9 @@ export default function DashboardWrapper({ title, children }) {
         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
       >
         <Toolbar />
+
+        <div>{children}</div>
+
       </Box>
     </Box>
   );
