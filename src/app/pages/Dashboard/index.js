@@ -13,6 +13,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import Button from "@mui/material/Button";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const drawerWidth = 240;
 
@@ -25,11 +30,14 @@ export default function DashboardPage() {
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
         <Toolbar sx={{ backgroundColor: "black" }}>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            Dashboard
           </Typography>
+
+          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
+
       <Drawer
         sx={{
           width: drawerWidth,
@@ -45,37 +53,42 @@ export default function DashboardPage() {
         <Toolbar />
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? (
-                    <InboxIcon sx={{ color: "black" }} />
-                  ) : (
-                    <MailIcon sx={{ color: "black" }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? (
-                    <InboxIcon sx={{ color: "black" }} />
-                  ) : (
-                    <MailIcon sx={{ color: "black" }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem disablePadding>
+            <ListItemButton href="/">
+              <ListItemIcon sx={{color:"black"}}>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Dashboard"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Products"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <LocalShippingIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Orders"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Settings"} />
+            </ListItemButton>
+          </ListItem>
+
         </List>
       </Drawer>
       <Box
