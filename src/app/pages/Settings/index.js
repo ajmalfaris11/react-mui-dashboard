@@ -10,7 +10,6 @@ import {
   FormControlLabel,
   Checkbox,
   Avatar,
-  Divider,
 } from "@mui/material";
 import { styled } from "@mui/system";
 
@@ -54,8 +53,8 @@ const DarkTextField = styled(TextField)(({ theme }) => ({
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
-    username: "JohnDoe",
-    email: "johndoe@example.com",
+    username: "AjmalFaris11",
+    email: "ajmalfaris.me@gmail.com",
     notifications: {
       orderUpdates: true,
       promotions: false,
