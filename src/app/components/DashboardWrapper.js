@@ -1,7 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -16,13 +15,15 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import StoreIcon from "@mui/icons-material/Store";
+import IconButton from "@mui/material/IconButton";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const drawerWidth = 240;
 
 export default function DashboardWrapper({ title, children }) {
   return (
-    <Box sx={{ display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <AppBar
         position="fixed"
         sx={{
@@ -47,7 +48,41 @@ export default function DashboardWrapper({ title, children }) {
             {title}
           </Typography>
 
-          <Button sx={{ bgcolor: "white", color: "black","&:hover":{background:"#FF5722"} }} href="login">
+          {/* LinkedIn Icon */}
+          <IconButton
+            href="https://www.linkedin.com/in/ajmal-faris-31b0a22b5/" 
+            target="_blank"
+            sx={{ color: "white", "&:hover": { color: "#0077B5" } }}
+          >
+            <LinkedInIcon sx={{ fontSize: "22px" }} />
+          </IconButton>
+
+          {/* GitHub Icon */}
+          <IconButton
+            href="https://github.com/ajmalfaris11" 
+            target="_blank"
+            sx={{
+              color: "white",
+              "&:hover": { color: "#FF5722" },
+              marginRight: "20px",
+            }}
+          >
+            <GitHubIcon sx={{ fontSize: "22px" }} />
+          </IconButton>
+
+          {/* Logout Button */}
+          <Button
+            variant="outlined"
+            sx={{
+              color: "#FF5722",
+              borderColor: "#FF5722",
+              "&:hover": {
+                backgroundColor: "#FF5722",
+                color: "white",
+              },
+            }}
+            href="login"
+          >
             Logout
           </Button>
         </Toolbar>
@@ -97,7 +132,9 @@ export default function DashboardWrapper({ title, children }) {
           <ListItem disablePadding>
             <ListItemButton href="Products">
               <ListItemIcon
-                sx={{ color: title === "PRODUCT MANAGEMENT" ? "#FF5722" : "gray" }}
+                sx={{
+                  color: title === "PRODUCT MANAGEMENT" ? "#FF5722" : "gray",
+                }}
               >
                 <ShoppingCartIcon />
               </ListItemIcon>
@@ -108,7 +145,9 @@ export default function DashboardWrapper({ title, children }) {
           <ListItem disablePadding>
             <ListItemButton href="Orders">
               <ListItemIcon
-                sx={{ color: title === "Order Management" ? "#FF5722" : "gray" }}
+                sx={{
+                  color: title === "Order Management" ? "#FF5722" : "gray",
+                }}
               >
                 <LocalShippingIcon />
               </ListItemIcon>
