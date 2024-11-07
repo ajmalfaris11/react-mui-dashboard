@@ -109,7 +109,7 @@ export default function DashboardWrapper({ title, children }) {
           <ListItem disablePadding>
             <ListItemButton href="Orders">
               <ListItemIcon
-                sx={{ color: title === "Orders" ? "white" : "gray" }}
+                sx={{ color: title === "Order Management" ? "white" : "gray" }}
               >
                 <LocalShippingIcon />
               </ListItemIcon>
