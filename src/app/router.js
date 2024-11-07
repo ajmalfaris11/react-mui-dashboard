@@ -5,6 +5,7 @@ import SignInPage from './pages/Signin';
 import ProductsPage from './pages/Products';
 import OrdersPage from './pages/Orders';
 import SettingsPage from './pages/Settings';
+import MessagesPage from './pages/Messages';
 
 export default function router() { // Capitalize the function name
   return (
@@ -13,6 +14,7 @@ export default function router() { // Capitalize the function name
       <Route path="login" element={<SignInPage />} />
       <Route path="Products" element={<ProductsPage />} />
       <Route path="Orders" element={<OrdersPage/>} />
+      <Route path="Messages" element={<MessagesPage/>} />
       <Route path="Settings" element={<SettingsPage/>} />
     </Routes>
   );

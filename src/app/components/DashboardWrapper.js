@@ -18,6 +18,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import IconButton from "@mui/material/IconButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import ForumIcon from '@mui/icons-material/Forum';
 
 const drawerWidth = 240;
 
@@ -156,6 +157,18 @@ export default function DashboardWrapper({ title, children }) {
           </ListItem>
 
           <ListItem disablePadding>
+            <ListItemButton href="Messages">
+              <ListItemIcon
+                sx={{ color: title === "Messages" ? "#FF5722" : "gray" }}
+              >
+                <ForumIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Messages"} sx={{ color: "white" }} />
+            </ListItemButton>
+          </ListItem>
+
+
+          <ListItem disablePadding>
             <ListItemButton href="Settings">
               <ListItemIcon
                 sx={{ color: title === "Settings" ? "#FF5722" : "gray" }}
@@ -165,7 +178,8 @@ export default function DashboardWrapper({ title, children }) {
               <ListItemText primary={"Settings"} sx={{ color: "white" }} />
             </ListItemButton>
           </ListItem>
-        </List>
+
+          </List>
       </Drawer>
       <Box
         component="main"
