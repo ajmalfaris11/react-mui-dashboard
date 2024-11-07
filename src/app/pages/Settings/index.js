@@ -13,22 +13,22 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 
-// Custom styling for a modern dark theme
+// Custom styling for dark theme
 const DarkCard = styled(Card)(({ theme }) => ({
-  backgroundColor: "#1A1A1A", // Dark background
-  color: "white", // Light text
-  borderRadius: "10px", // Rounded corners
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)", // Soft shadow for modern feel
+  backgroundColor: "#1A1A1A",
+  color: "white",
+  borderRadius: "10px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
   "&:hover": {
-    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.7)", // Hover shadow effect
+    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.7)",
   },
 }));
 
 const DarkButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#FF5722", // Fashion-forward color (orange/red for action)
+  backgroundColor: "#FF5722",
   color: "white",
   "&:hover": {
-    backgroundColor: "#E64A19", // Darker on hover
+    backgroundColor: "#E64A19",
   },
   borderRadius: "8px",
   padding: "10px 20px",
@@ -37,17 +37,17 @@ const DarkButton = styled(Button)(({ theme }) => ({
 
 const DarkTextField = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-root": {
-    backgroundColor: "#333333", // Dark background for inputs
-    borderRadius: "8px", // Rounded corners for inputs
+    backgroundColor: "#333333",
+    borderRadius: "8px",
   },
   "& .MuiInputBase-input": {
-    color: "white", // White text for input fields
+    color: "white",
   },
   "& .MuiFormLabel-root": {
-    color: "#B0B0B0", // Lighter color for labels
+    color: "#B0B0B0",
   },
   "& .MuiInputBase-root:before": {
-    borderBottom: "1px solid #333333", // Subtle border at the bottom
+    borderBottom: "1px solid #333333",
   },
 }));
 
@@ -61,6 +61,21 @@ export default function SettingsPage() {
       newsletter: true,
     },
     password: "",
+    payment: {
+      currency: "USD",
+      taxRate: "7.5",
+      paymentGateway: "Stripe",
+    },
+    shipping: {
+      freeShipping: true,
+      flatRate: 5.99,
+      localPickup: false,
+      cod:true,
+    },
+    security: {
+      twoFactorAuth: false,
+      loginAlerts: true,
+    },
   });
 
   const handleChange = (e) => {
@@ -68,11 +83,10 @@ export default function SettingsPage() {
     setSettings({ ...settings, [name]: value });
   };
 
-  const handleNotificationChange = (e) => {
-    const { name, checked } = e.target;
+  const handleCheckboxChange = (section, name) => (e) => {
     setSettings({
       ...settings,
-      notifications: { ...settings.notifications, [name]: checked },
+      [section]: { ...settings[section], [name]: e.target.checked },
     });
   };
 
@@ -93,38 +107,17 @@ export default function SettingsPage() {
               <Avatar
                 sx={{ bgcolor: "#FF5722", width: 50, height: 50, mr: 2 }}
               />
-              <TextField
+              <DarkTextField
                 label="Username"
-                variant="outlined"
                 fullWidth
                 margin="normal"
                 value={settings.username}
                 name="username"
                 onChange={handleChange}
-                sx={{
-                  mb: 2,
-                  "& .MuiInputBase-root": {
-                    borderColor: "white", // Border color for the input
-                  },
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "grey", // Outline border color for the input
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    color: "grey", // Label color
-                  },
-                }}
-                InputProps={{
-                  style: {
-                    color: "#FF5722", // Input text color
-                  },
-                }}
               />
             </Box>
             <DarkTextField
               label="Email"
-              variant="outlined"
               fullWidth
               margin="normal"
               value={settings.email}
@@ -134,87 +127,154 @@ export default function SettingsPage() {
           </CardContent>
         </DarkCard>
 
-        {/* Password Settings */}
+        {/* Payment Settings */}
         <DarkCard sx={{ mb: 3 }}>
           <CardContent>
             <Typography variant="h6" sx={{ mb: 2 }}>
-              Change Password
+              Payment Settings
             </Typography>
             <DarkTextField
-              label="New Password"
-              variant="outlined"
-              type="password"
+              label="Currency"
               fullWidth
               margin="normal"
-              value={settings.password}
-              name="password"
-              onChange={handleChange}
+              value={settings.payment.currency}
+              name="currency"
+              onChange={(e) =>
+                setSettings({
+                  ...settings,
+                  payment: { ...settings.payment, currency: e.target.value },
+                })
+              }
             />
-            <DarkButton
-              variant="contained"
-              onClick={handleSaveChanges}
-              sx={{ mt: 2 }}
-            >
-              Save Password
-            </DarkButton>
+            <DarkTextField
+              label="Tax Rate (%)"
+              fullWidth
+              margin="normal"
+              value={settings.payment.taxRate}
+              name="taxRate"
+              onChange={(e) =>
+                setSettings({
+                  ...settings,
+                  payment: { ...settings.payment, taxRate: e.target.value },
+                })
+              }
+            />
+            <DarkTextField
+              label="Payment Gateway"
+              fullWidth
+              margin="normal"
+              value={settings.payment.paymentGateway}
+              name="paymentGateway"
+              onChange={(e) =>
+                setSettings({
+                  ...settings,
+                  payment: {
+                    ...settings.payment,
+                    paymentGateway: e.target.value,
+                  },
+                })
+              }
+            />
           </CardContent>
         </DarkCard>
 
-        {/* Notification Settings */}
+        {/* Shipping Settings */}
         <DarkCard sx={{ mb: 3 }}>
           <CardContent>
             <Typography variant="h6" sx={{ mb: 2 }}>
-              Notification Settings
+              Shipping Settings
             </Typography>
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={settings.notifications.orderUpdates}
-                  onChange={handleNotificationChange}
-                  name="orderUpdates"
+                  checked={settings.shipping.freeShipping}
+                  onChange={handleCheckboxChange("shipping", "freeShipping")}
                   sx={{
-                    color: "#FF5722", // Custom color for the checkbox
-                    "&.Mui-checked": {
-                      color: "#FF5722", // Custom color for the checked state
-                    },
+                    color: "#FF5722",
+                    "&.Mui-checked": { color: "#FF5722" },
                   }}
                 />
               }
-              label="Order Updates"
+              label="Enable Free Shipping"
+              sx={{ color: "white" }}
+            />
+            <DarkTextField
+              label="Flat Rate Shipping Cost"
+              fullWidth
+              margin="normal"
+              value={settings.shipping.flatRate}
+              name="flatRate"
+              onChange={(e) =>
+                setSettings({
+                  ...settings,
+                  shipping: { ...settings.shipping, flatRate: e.target.value },
+                })
+              }
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={settings.shipping.localPickup}
+                  onChange={handleCheckboxChange("shipping", "localPickup")}
+                  sx={{
+                    color: "#FF5722",
+                    "&.Mui-checked": { color: "#FF5722" },
+                  }}
+                />
+              }
+              label="Enable Local Pickup"
+              sx={{ color: "white" }}
+            />
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={settings.shipping.cod}
+                  onChange={handleCheckboxChange("shipping", "localPickup")}
+                  sx={{
+                    color: "#FF5722",
+                    "&.Mui-checked": { color: "#FF5722" },
+                  }}
+                />
+              }
+              label="COD"
+              sx={{ color: "white" }}
+            />
+          </CardContent>
+        </DarkCard>
+
+        {/* Security Settings */}
+        <DarkCard sx={{ mb: 3 }}>
+          <CardContent>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Security Settings
+            </Typography>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={settings.security.twoFactorAuth}
+                  onChange={handleCheckboxChange("security", "twoFactorAuth")}
+                  sx={{
+                    color: "#FF5722",
+                    "&.Mui-checked": { color: "#FF5722" },
+                  }}
+                />
+              }
+              label="Enable Two-Factor Authentication"
               sx={{ color: "white" }}
             />
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={settings.notifications.promotions}
-                  onChange={handleNotificationChange}
-                  name="promotions"
+                  checked={settings.security.loginAlerts}
+                  onChange={handleCheckboxChange("security", "loginAlerts")}
                   sx={{
-                    color: "#FF5722", 
-                    "&.Mui-checked": {
-                      color: "#FF5722",
-                    },
+                    color: "#FF5722",
+                    "&.Mui-checked": { color: "#FF5722" },
                   }}
                 />
               }
-              label="Promotions"
-              sx={{ color: "white" }}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={settings.notifications.newsletter}
-                  onChange={handleNotificationChange}
-                  name="newsletter"
-                  sx={{
-                    color: "#FF5722", 
-                    "&.Mui-checked": {
-                      color: "#FF5722", 
-                    },
-                  }}
-                />
-              }
-              label="Newsletter"
+              label="Enable Login Alerts"
               sx={{ color: "white" }}
             />
           </CardContent>
