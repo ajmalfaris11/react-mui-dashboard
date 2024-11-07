@@ -42,10 +42,10 @@ export default function ProductsPage() {
         component="main"
         sx={{
           flexGrow: 1,
-          bgcolor: "black",
+          bgcolor: "black",  
           px: { xs: 2, md: 4 },
           py: 4,
-          color: "white",
+          color: "white", 
         }}
       >
         {/* Product Table */}
@@ -53,17 +53,17 @@ export default function ProductsPage() {
           component={Paper}
           elevation={6}
           sx={{
-            bgcolor: "#1c1c1c",
+            bgcolor: "black", 
             borderRadius: 3,
             overflow: "hidden",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.3)",  
           }}
         >
           <Table>
             <TableHead>
               <TableRow
                 sx={{
-                  bgcolor: "#333",
+                  bgcolor: "#222",  
                 }}
               >
                 <TableCell sx={{ color: "white", fontWeight: "bold" }}>ID</TableCell>
@@ -80,7 +80,7 @@ export default function ProductsPage() {
                   key={product.id}
                   sx={{
                     "&:hover": {
-                      bgcolor: "#2b2b2b",
+                      bgcolor: "#333",  
                     },
                   }}
                 >
@@ -92,15 +92,14 @@ export default function ProductsPage() {
                   <TableCell>
                     <Button
                       variant="outlined"
-                      color="primary"
                       sx={{
                         mr: 1,
                         textTransform: "none",
                         borderRadius: 2,
                         color: "white",
-                        borderColor: "gray",
+                        borderColor: "#FF5722",  
                         "&:hover": {
-                          borderColor: "white",
+                          borderColor: "#FF5722", 
                         },
                       }}
                     >
@@ -109,11 +108,13 @@ export default function ProductsPage() {
                     <Button
                       variant="contained"
                       sx={{
-                        backgroundColor: "white",
-                        color: "black",
+                        backgroundColor: "#FF5722",  
+                        color: "white",
                         textTransform: "none",
                         borderRadius: 2,
-                        "&:hover": { backgroundColor: "#b71c1c",color:"white" },
+                        "&:hover": {
+                          backgroundColor: "#e64a19",  
+                        },
                       }}
                     >
                       Delete
