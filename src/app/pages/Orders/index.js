@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DashboardWrapper from "../../components/DashboardWrapper";
 import {
   Box,
-  Typography,
   Paper,
   Table,
   TableBody,
@@ -48,7 +47,6 @@ export default function OrdersPage() {
 
   // Generate 23 orders with sample data
   const [orders, setOrders] = useState(
-
     Array.from({ length: 23 }, (_, i) => ({
       id: 100 + i + 1,
       customer: sampleCustomers[i % sampleCustomers.length],
@@ -83,7 +81,7 @@ export default function OrdersPage() {
         <TableContainer
           component={Paper}
           elevation={3}
-          sx={{ bgcolor: "#1c1c1c", color: "white", borderRadius: 2 }}
+          sx={{ bgcolor: "#1A1A1A", color: "white", borderRadius: 2 }}
         >
           <Table>
             <TableHead>
@@ -92,11 +90,12 @@ export default function OrdersPage() {
                   <TableCell
                     key={column}
                     sx={{
-                      color: "white",
+                      color: "#B0B0B0",
                       fontWeight: "bold",
                       "&:hover": {
-                        color: "blue", 
+                        color: "#FF5722",
                       },
+                      textAlign:"center"
                     }}
                   >
                     <TableSortLabel
@@ -104,15 +103,15 @@ export default function OrdersPage() {
                       direction={orderBy === column ? orderDirection : "asc"}
                       onClick={() => handleSort(column)}
                       sx={{
-                        color: "white",
+                        color: "#B0B0B0",
                         "&.Mui-active": {
-                          color: "white",
+                          color: "#FF5722",
                         },
                         "&:hover": {
-                          color: "grey",
+                          color: "white",
                         },
                         "& .MuiTableSortLabel-icon": {
-                          color: "green !important",
+                          color: "#FF5722 !important",
                         },
                       }}
                     >
@@ -121,7 +120,7 @@ export default function OrdersPage() {
                   </TableCell>
                 ))}
 
-                <TableCell sx={{ color: "white", fontWeight: "bold" }}>
+                <TableCell sx={{ color: "#B0B0B0", fontWeight: "bold",textAlign:"center" }}>
                   Actions
                 </TableCell>
               </TableRow>
@@ -131,14 +130,14 @@ export default function OrdersPage() {
                 <TableRow
                   key={order.id}
                   hover
-                  sx={{ "&:hover": { bgcolor: "#2a2a2a" } }}
+                  sx={{ "&:hover": { bgcolor: "#333333" } }}
                 >
-                  <TableCell sx={{ color: "white" }}>{order.id}</TableCell>
-                  <TableCell sx={{ color: "white" }}>
+                  <TableCell sx={{ color: "white",textAlign:"center" }}>{order.id}</TableCell>
+                  <TableCell sx={{ color: "white",textAlign:"center" }}>
                     {order.customer}
                   </TableCell>
-                  <TableCell sx={{ color: "white" }}>{order.date}</TableCell>
-                  <TableCell sx={{ color: "white" }}>
+                  <TableCell sx={{ color: "white",textAlign:"center" }}>{order.date}</TableCell>
+                  <TableCell sx={{ color: "white",textAlign:"center" }}>
                     ${order.total.toFixed(2)}
                   </TableCell>
                   <TableCell>
@@ -148,22 +147,22 @@ export default function OrdersPage() {
                         order.status === "Shipped"
                           ? "primary"
                           : order.status === "Processing"
-                            ? "warning"
-                            : order.status === "Delivered"
-                              ? "success"
-                              : "default"
+                          ? "warning"
+                          : order.status === "Delivered"
+                          ? "success"
+                          : "error"
                       }
-                      sx={{ color: "white" }}
+                      sx={{ color: "white", backgroundColor: "#", width:"100%" }}
                     />
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{textAlign:"center"}}>
                     <Button
                       variant="contained"
                       color="primary"
                       sx={{
                         mr: 1,
-                        bgcolor: "#1976d2",
-                        "&:hover": { bgcolor: "#1565c0" },
+                        bgcolor: "#FF5722", 
+                        "&:hover": { bgcolor: "#E64A19" },
                       }}
                     >
                       View
@@ -171,9 +170,9 @@ export default function OrdersPage() {
                     <Button
                       variant="contained"
                       sx={{
-                        backgroundColor: "red",
+                        backgroundColor: "#D32F2F", 
                         color: "white",
-                        "&:hover": { backgroundColor: "darkred" },
+                        "&:hover": { backgroundColor: "#C62828" },
                       }}
                     >
                       Cancel
