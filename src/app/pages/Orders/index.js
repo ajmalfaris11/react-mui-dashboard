@@ -125,12 +125,11 @@ export default function OrdersPage() {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody sx={{backgroundColor:"black"}}>
               {orders.map((order) => (
                 <TableRow
                   key={order.id}
-                  hover
-                  sx={{ "&:hover": { bgcolor: "#333333" } }}
+                  sx={{ "&:hover": { bgcolor: "#3336" } }}
                 >
                   <TableCell sx={{ color: "white",textAlign:"center" }}>{order.id}</TableCell>
                   <TableCell sx={{ color: "white",textAlign:"center" }}>
