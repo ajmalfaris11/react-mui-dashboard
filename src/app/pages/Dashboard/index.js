@@ -10,7 +10,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 export default function DashboardPage() {
   return (
     <DashboardWrapper title="Dashboard">
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', px: { xs: 2, md: 3 }, py: 3 }}>      
+      <Box component="main" sx={{ flexGrow: 1, px: { xs: 2, md: 3 }, py: 3 }}>      
         
         {/* Summary Cards */}
         <Grid container spacing={3}>

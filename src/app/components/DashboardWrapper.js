@@ -22,13 +22,16 @@ const drawerWidth = 240;
 
 export default function DashboardWrapper({ title, children }) {
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+    <Box sx={{ display: "flex"}}>
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+          backgroundColor: "black",
+        }}
       >
-        <Toolbar sx={{ backgroundColor: "black" }}>
+        <Toolbar>
           <Typography
             variant="h6"
             noWrap
@@ -38,12 +41,15 @@ export default function DashboardWrapper({ title, children }) {
               textAlign: "center",
               fontWeight: "900",
               fontSize: "28px",
+              color: "white",
             }}
           >
             {title}
           </Typography>
 
-          <Button sx={{bgcolor:"white", color:"black"}} href="login">Logout</Button>
+          <Button sx={{ bgcolor: "white", color: "black" }} href="login">
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
 
@@ -54,6 +60,8 @@ export default function DashboardWrapper({ title, children }) {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
+            backgroundColor: "black",
+            color: "white",
           },
         }}
         variant="permanent"
@@ -61,16 +69,16 @@ export default function DashboardWrapper({ title, children }) {
       >
         <Toolbar
           sx={{
-            backgroundColor: "black",
-            color: "white",
             display: "flex",
             justifyContent: "center",
             padding: "0",
+            backgroundColor: "black",
           }}
         >
-          <StoreIcon />
-
-          <Typography sx={{ fontSize: "24px", fontWeight: "900" }}>
+          <StoreIcon sx={{ color: "white" }} />
+          <Typography
+            sx={{ fontSize: "24px", fontWeight: "900", color: "white" }}
+          >
             MYstore
           </Typography>
         </Toolbar>
@@ -79,56 +87,58 @@ export default function DashboardWrapper({ title, children }) {
           <ListItem disablePadding>
             <ListItemButton href="/">
               <ListItemIcon
-                sx={{ color: title === "Dashboard" ? "black" : "defaultColor" }}
+                sx={{ color: title === "Dashboard" ? "white" : "gray" }}
               >
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText primary={"Dashboard"} />
+              <ListItemText primary={"Dashboard"} sx={{ color: "white" }} />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
             <ListItemButton href="Products">
               <ListItemIcon
-                sx={{ color: title === "Products" ? "black" : "defaultColor" }}
+                sx={{ color: title === "PRODUCT MANAGEMENT" ? "white" : "gray" }}
               >
                 <ShoppingCartIcon />
               </ListItemIcon>
-              <ListItemText primary={"Products"} />
+              <ListItemText primary={"Products"} sx={{ color: "white" }} />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
             <ListItemButton href="Orders">
               <ListItemIcon
-                sx={{ color: title === "Orders" ? "black" : "defaultColor" }}
+                sx={{ color: title === "Orders" ? "white" : "gray" }}
               >
                 <LocalShippingIcon />
               </ListItemIcon>
-              <ListItemText primary={"Orders"} />
+              <ListItemText primary={"Orders"} sx={{ color: "white" }} />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
             <ListItemButton href="Settings">
               <ListItemIcon
-                sx={{ color: title === "Settings" ? "black" : "defaultColor" }}
+                sx={{ color: title === "Settings" ? "white" : "gray" }}
               >
                 <SettingsIcon />
               </ListItemIcon>
-              <ListItemText primary={"Settings"} />
+              <ListItemText primary={"Settings"} sx={{ color: "white" }} />
             </ListItemButton>
           </ListItem>
         </List>
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+        sx={{
+          flexGrow: 1,
+          bgcolor: "black",
+          p: 3,
+        }}
       >
         <Toolbar />
-
         <div>{children}</div>
-
       </Box>
     </Box>
   );
